@@ -1,1 +1,1 @@
-require 'libwarp_ctc'
+return require 'libwarp_ctc'

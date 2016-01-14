@@ -247,8 +247,10 @@ extern "C" int cpu_ctc(lua_State* L) {
 }
 
 extern "C" int luaopen_libwarp_ctc(lua_State *L) {
-    lua_register(L, "gpu_ctc", gpu_ctc);
-    lua_register(L, "cpu_ctc", cpu_ctc);
-
-    return 0;
+    lua_newtable(L);
+    lua_pushcfunction(L, gpu_ctc);
+    lua_setfield(L, -2, "gpu_fwdbwd");
+    lua_pushcfunction(L, cpu_ctc);
+    lua_setfield(L, -2, "cpu_fwdbwd");
+    return 1;
 }
